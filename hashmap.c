@@ -64,28 +64,32 @@ void insertMap(HashMap * map, char * key, void * value) {
 }
 
 void enlarge(HashMap * map) {
-  //La capacidad debe duplicarse
-  int nueva_capacidad = map->capacity*2;
+  //Se duplica la capacidad 
+  int nueva_capacidad = map->capacity * 2 + 1;
 
-  //Se crea un nuevo arreglo
-  //Reservando memoria para la nueva capacidad
-  Pair ** hash_map = (Pair **)malloc(sizeof(Pair*) * nueva_capacidad);
-
-  if(hash_map == NULL){
+  //Se crea un nuevo arreglo con la nueva capacidad
+  Pair **nuevo_arreglo = (Pair**) malloc(nueva_capacidad * sizeof(Pair*));
+  if(nuevo_arreglo == NULL){
     return;
   }
-  //Trasferir los datos al nuevo arreglo
-  for(int i = 0; i < map->capacity; i++){
+  //Se inicializa en NULL
+  for(int i = 0; i < nueva_capacidad; i++){
+    nuevo_arreglo[i] = NULL;
+  }
+  //Traspasamos los datos de un arreglo al otro
+  for(int i  = 0; i < map->capacity; i++){
     if(map->buckets[i] != NULL){
-      hash_map[i] = map->buckets[i];
+      Pair * current = map->buckets[i];
+
+      //Calculamos el hash para el nuevo arreglo
+      long nuevo_indice = hash(current->key,nueva_capacidad);
+
+      while(nuevo_arreglo[nuevo_indice] != NULL){
+        nuevo_indice = (nuevo_indice + 1) % nueva_capacidad;
+      }
+      nuevo_arreglo[nuevo_indice] = current;
     }
   }
-  //Se libera la memoria del arreglo anterior
-  free(map->buckets);
-  //Se asigna la nueva capacidad
-
-  map->buckets = hash_map;
-  map->capacity = nueva_capacidad;
 }
 
 
