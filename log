@@ -106,3 +106,17 @@ Sat 27 Apr 2024 10:54:39 PM UTC:
  tests:  8|3
 total_score: 40/70
 6a04960
+Sat 27 Apr 2024 10:59:28 PM UTC: 
+ hashmap.c | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:134:22: error: ‘Pair’ has no member named ‘next’
+  134 |     current = current->next;
+      |                      ^~
+hashmap.c:126:10: error: variable ‘prev’ set but not used [-Werror=unused-but-set-variable]
+  126 |   Pair * prev = NULL;
+      |          ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+2a5e9fd

@@ -121,18 +121,17 @@ HashMap * createMap(long capacity) {
 
 void eraseMap(HashMap * map,  char * key) {    
   if(map == NULL || key == NULL) return;
-
-  long posicion = hash(key,map->capacity);
-  //Se busca el indice
-  while(map->buckets[posicion]!=NULL){
-    if(is_equal(map->buckets[posicion]->key,key)){
-      free(map->buckets[posicion]->key);
-      free(map->buckets[posicion]);
-      map->buckets[posicion] = NULL;
+  int posicion = hash(key,map->capacity);
+  Pair *current = map->buckets[posicion];
+  Pair * prev = NULL;
+  while(current != NULL){
+    if(is_equal(current->key,key)){
+      current->key = NULL;
       map->size--;
       return;
     }
-    posicion = (posicion+1) % map->capacity;
+    prev = current;
+    current = current->next;
   }
 }
 
