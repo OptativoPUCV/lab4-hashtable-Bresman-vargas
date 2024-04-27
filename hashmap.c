@@ -65,7 +65,7 @@ void insertMap(HashMap * map, char * key, void * value) {
 
 void enlarge(HashMap * map) {
   //Se duplica la capacidad 
-  int nueva_capacidad = map->capacity * 2 + 1;
+  int nueva_capacidad = map->capacity * 2;
 
   //Se crea un nuevo arreglo con la nueva capacidad
   Pair **nuevo_arreglo = (Pair**) malloc(nueva_capacidad * sizeof(Pair*));
