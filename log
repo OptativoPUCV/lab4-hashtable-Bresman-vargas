@@ -48,3 +48,14 @@ hashmap.c:72:21: error: initialization of ‘Pair **’ from incompatible pointe
 cc1: all warnings being treated as errors
 Compilation failed
 271683e
+Sat 27 Apr 2024 07:24:20 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘enlarge’:
+hashmap.c:72:22: error: initialization of ‘Pair **’ from incompatible pointer type ‘Pair *’ [-Werror=incompatible-pointer-types]
+   72 |   Pair ** hash_map = (Pair *)malloc(sizeof(Pair*) * nueva_capacidad);
+      |                      ^
+cc1: all warnings being treated as errors
+Compilation failed
+80b2a87
