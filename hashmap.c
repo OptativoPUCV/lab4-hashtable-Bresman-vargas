@@ -144,6 +144,9 @@ Pair * searchMap(HashMap * map,  char * key) {
     if(map->buckets[posicion] != NULL && strcmp(map->buckets[posicion]->key, key) == 0){
       return map->buckets[posicion];
     }
+    if(map->buckets[posicion] == NULL){
+      return NULL;
+    }
     //Se aumenta el indice
     posicion = (posicion + 1) % map->capacity;
     current++;
