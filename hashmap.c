@@ -36,7 +36,6 @@ int is_equal(void* key1, void* key2){
     //if(key1==NULL || key2==NULL) return 0;
     //if(strcmp((char*)key1,(char*)key2) == 0) return 1;
     return strcmp(key1, key2) == 0;
-    return 0;
 }
 
 // Tuve un problema asi que solo voy a copiar mi codigo
