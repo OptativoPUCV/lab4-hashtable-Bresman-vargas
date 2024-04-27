@@ -148,9 +148,9 @@ Pair * searchMap(HashMap * map,  char * key) {
       return NULL;
     }
     //Se aumenta el indice
+    count++;
     posicion = (posicion + 1) % map->capacity;
     current++;
-    count++;
     
   } while (posicion != start_index && count < map->size);
   return NULL;
