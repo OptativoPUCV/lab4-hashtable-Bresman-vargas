@@ -129,16 +129,30 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-  if(map == NULL || key == NULL) return NULL;
+  if(map == NULL || key == NULL){
+    return NULL;
+  }
+  //Se calcula el indice
   long posicion = hash(key,map->capacity);
-  //Se busca el indice
-  while(map->buckets[posicion]!=NULL){
-    if(is_equal(map->buckets[posicion]->key,key)){
-      map->current = posicion;
+
+  //Se busca otro indice
+  int start_index = posicion;
+  int current = 0;
+  int count = 0;
+  do {
+    //Se busca el dato
+    if(map->buckets[posicion] != NULL && strcmp(map->buckets[posicion]->key, key) == 0){
       return map->buckets[posicion];
     }
-    posicion = (posicion+1) % map->capacity;
-  }
+    if(map->buckets[posicion] == NULL){
+      return NULL;
+    }
+    //Se aumenta el indice
+    count++;
+    posicion = (posicion + 1) % map->capacity;
+    current++;
+    
+  } while (posicion != start_index && count < map->size);
   return NULL;
 }
 
