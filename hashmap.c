@@ -69,7 +69,7 @@ void enlarge(HashMap * map) {
 
   //Se crea un nuevo arreglo
   //Reservando memoria para la nueva capacidad
-  Pair ** hash_map = (Pair *)malloc(sizeof(Pair*) * nueva_capacidad);
+  Pair ** hash_map = (Pair **)malloc(sizeof(Pair*) * nueva_capacidad);
 
   if(hash_map == NULL){
     return;
