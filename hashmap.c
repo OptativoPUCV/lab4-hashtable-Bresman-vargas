@@ -168,10 +168,15 @@ Pair * firstMap(HashMap * map) {
   if(map == NULL){
     return NULL;
   }
-  for(int i = 0 ; i < map->capacity; i++){
+
+  //Se busca el primer dato
+  for(int i = 0; i < map->capacity; i++){
     if(map->buckets[i] != NULL){
+      map->current = i;
       return map->buckets[i];
+      
     }
+    
   }
   return NULL;
 }
