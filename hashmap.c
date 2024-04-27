@@ -90,6 +90,10 @@ void enlarge(HashMap * map) {
       nuevo_arreglo[nuevo_indice] = current;
     }
   }
+
+  free(map->buckets);
+  map->buckets = nuevo_arreglo;
+  map->capacity = nueva_capacidad;
 }
 
 
