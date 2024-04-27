@@ -120,3 +120,14 @@ hashmap.c:126:10: error: variable ‘prev’ set but not used [-Werror=unused-bu
 cc1: all warnings being treated as errors
 Compilation failed
 2a5e9fd
+Sat 27 Apr 2024 11:01:49 PM UTC: 
+ hashmap.c | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:144:10: error: variable ‘prev’ set but not used [-Werror=unused-but-set-variable]
+  144 |   Pair * prev = NULL;
+      |          ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+9174a35

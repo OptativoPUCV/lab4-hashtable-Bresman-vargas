@@ -119,6 +119,24 @@ HashMap * createMap(long capacity) {
   return map;
 }
 
+Pair * nextMap(HashMap * map) {
+
+  if(map == NULL || map->buckets == NULL){
+    return NULL;
+  }
+  map->current++;
+  if(map->current < map->capacity){
+    return NULL;
+  }
+  for(int i = map->current; i < map->capacity; i++){
+    if(map->buckets[i] != NULL){
+      map->current = i;
+      return map->buckets[i];
+    }
+  }
+  return NULL;
+}
+
 void eraseMap(HashMap * map,  char * key) {    
   if(map == NULL || key == NULL) return;
   int posicion = hash(key,map->capacity);
@@ -131,7 +149,7 @@ void eraseMap(HashMap * map,  char * key) {
       return;
     }
     prev = current;
-    current = current->next;
+    current = nextMap(map);
   }
 }
 
@@ -173,24 +191,6 @@ Pair * firstMap(HashMap * map) {
     if(map->buckets[i] != NULL){
       map->current = i;
       return map->buckets[i]; 
-    }
-  }
-  return NULL;
-}
-
-Pair * nextMap(HashMap * map) {
-
-  if(map == NULL || map->buckets == NULL){
-    return NULL;
-  }
-  map->current++;
-  if(map->current < map->capacity){
-    return NULL;
-  }
-  for(int i = map->current; i < map->capacity; i++){
-    if(map->buckets[i] != NULL){
-      map->current = i;
-      return map->buckets[i];
     }
   }
   return NULL;
