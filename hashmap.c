@@ -181,10 +181,14 @@ Pair * firstMap(HashMap * map) {
 
 Pair * nextMap(HashMap * map) {
 
-  if(map == NULL){
+  if(map == NULL || map->buckets == NULL){
     return NULL;
   }
-  for(int i = map->current + 1 ; i < map->capacity; i++){
+  map->current++;
+  if(map->current < map->capacity){
+    return NULL;
+  }
+  for(int i = map->current; i < map->capacity; i++){
     if(map->buckets[i] != NULL){
       map->current = i;
       return map->buckets[i];
