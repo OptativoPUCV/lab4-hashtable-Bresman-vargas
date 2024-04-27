@@ -69,7 +69,7 @@ void enlarge(HashMap * map) {
 
   //Se crea un nuevo arreglo
   //Reservando memoria para la nueva capacidad
-  Pair *hash_map = (Pair *)malloc(sizeof(Pair) * nueva_capacidad);
+  Pair **hash_map = (Pair *)malloc(sizeof(Pair) * nueva_capacidad);
 
   if(hash_map == NULL){
     return;
@@ -77,14 +77,14 @@ void enlarge(HashMap * map) {
   //Trasferir los datos al nuevo arreglo
   for(int i = 0; i < map->capacity; i++){
     if(map->buckets[i] != NULL){
-      hash_map[i] = *map->buckets[i];
+      hash_map[i] = map->buckets[i];
     }
   }
   //Se libera la memoria del arreglo anterior
   free(map->buckets);
   //Se asigna la nueva capacidad
 
-  map->buckets = &hash_map;
+  map->buckets = hash_map;
   map->capacity = nueva_capacidad;
 }
 
