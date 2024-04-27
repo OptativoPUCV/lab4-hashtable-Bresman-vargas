@@ -137,6 +137,7 @@ Pair * searchMap(HashMap * map,  char * key) {
 
   //Se busca otro indice
   int start_index = posicion;
+  int current = 0;
   do {
     //Se busca el dato
     if(map->buckets[posicion] != NULL && strcmp(map->buckets[posicion]->key, key) == 0){
@@ -144,6 +145,7 @@ Pair * searchMap(HashMap * map,  char * key) {
     }
     //Se aumenta el indice
     posicion = (posicion + 1) % map->capacity;
+    current++;
   } while (posicion != start_index && map->buckets[posicion] != NULL);
   return NULL;
 }
