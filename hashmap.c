@@ -154,7 +154,7 @@ Pair * searchMap(HashMap * map,  char * key) {
   long posicion = hash(key,map->capacity);
   long posicion_original = posicion;
 
-  while(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
+  while(map->buckets[posicion] != NULL && map->buckets){
     if(strcmp(map->buckets[posicion]->key, key)){
       map->current = posicion;
       return map->buckets[posicion];
