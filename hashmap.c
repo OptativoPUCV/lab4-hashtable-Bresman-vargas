@@ -122,15 +122,11 @@ HashMap * createMap(long capacity) {
 
 Pair * nextMap(HashMap * map) {
 
-  if(map == NULL || map->buckets == NULL){
+  if(map == NULL){
     return NULL;
   }
-  map->current++;
-  if(map->current < map->capacity){
-    return NULL;
-  }
-  for(int i = map->current; i < map->capacity; i++){
-    if(map->buckets[i] != NULL){
+  for(int i = map->current + 1; i < map->capacity; i++){
+    if(map->buckets[i]! = NULL){
       map->current = i;
       return map->buckets[i];
     }
@@ -181,13 +177,13 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-  if(map == NULL || map->buckets == NULL){
+  if(map == NULL){
     return NULL;
   }
 
   //Se busca el primer dato
   for(int i = 0; i < map->capacity; i++){
-    if(map->buckets[i] != NULL){
+    if(map->buckets[i] != NULL && map->buckets[i]->key != NULL){
       map->current = i;
       return map->buckets[i]; 
     }
