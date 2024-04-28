@@ -126,7 +126,7 @@ Pair * nextMap(HashMap * map) {
     return NULL;
   }
   for(int i = map->current + 1; i < map->capacity; i++){
-    if(map->buckets[i]! = NULL){
+    if(map->buckets[i]!= NULL){
       map->current = i;
       return map->buckets[i];
     }
@@ -154,25 +154,18 @@ Pair * searchMap(HashMap * map,  char * key) {
   }
   //Se calcula el indice
   long posicion = hash(key,map->capacity);
+  long posicion_original = posicion;
 
-  //Se busca otro indice
-  int start_index = posicion;
-  int current = 0;
-  int count = 0;
-  do {
-    //Se busca el dato
-    if(map->buckets[posicion] != NULL && strcmp(map->buckets[posicion]->key, key) == 0){
+  while(map->buckets[posicion] != NULL && map->buckets[posicion]->key != NULL){
+    if(strcmp(map->buckets[posicion]->key, key)){
+      map->current = posicion;
       return map->buckets[posicion];
     }
-    if(map->buckets[posicion] == NULL){
+    posicion = (posicion + 1) % map->capacity;
+    if(posicion == posicion_original){
       return NULL;
     }
-    //Se aumenta el indice
-    count++;
-    posicion = (posicion + 1) % map->capacity;
-    current++;
-    
-  } while (posicion != start_index && count < map->size);
+  }
   return NULL;
 }
 
