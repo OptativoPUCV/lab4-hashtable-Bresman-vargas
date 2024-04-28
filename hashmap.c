@@ -149,9 +149,7 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-  if(map == NULL || key == NULL){
-    return NULL;
-  }
+  
   //Se calcula el indice
   long posicion = hash(key,map->capacity);
   long posicion_original = posicion;
